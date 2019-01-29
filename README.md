@@ -14,10 +14,6 @@ chmod 755 api_compteur_tic.py
 # Configuration :
 Voir fichier de référence : api_compteur_tic.conf
 
-# Utilisation :
-- obtenir une donnée unitaire (remplacer TARIF et ETIQUETTE) : http://127.0.0.1:5000/get_donnee?tarif=TARIF&etiquette=ETIQUETTE
-- obtenir l'interpretation complete des trames : http://127.0.0.1:5000/get_interpretation
-
 # Lancement automatique par systemd :
 ```bash
 cat << 'EOF' > /etc/systemd/system/api_compteur_tic.service
@@ -38,6 +34,10 @@ systemctl daemon-reload
 systemctl enable api_compteur_tic
 systemctl start api_compteur_tic
 ```
+
+# Utilisation :
+- obtenir une donnée unitaire (remplacer TARIF et ETIQUETTE) : http://127.0.0.1:5000/get_donnee?tarif=TARIF&etiquette=ETIQUETTE
+- obtenir l'interpretation complete des trames : http://127.0.0.1:5000/get_interpretation
 
 # TODO
   - Automatiser la gestion de configuration avec un paquet python.
