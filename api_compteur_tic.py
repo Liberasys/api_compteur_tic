@@ -231,12 +231,12 @@ from decode_pmepmi import SortieFichier
 if type_compteur == 'linky':
     from decode_linky import DecodeCompteurLinky
     from decode_linky import InterpretationTramesLinky
-    decodeur_trames = CompteurLinky()
+    decodeur_trames = DecodeCompteurLinky()
     interpreteur_trames = InterpretationTramesLinky()
 elif type_compteur == 'pmepmi':
     from decode_pmepmi import DecodeCompteurPmePmi
     from decode_pmepmi import InterpretationTramesPmePmi
-    decodeur_trames = CompteurPmePmi()
+    decodeur_trames = DecodeCompteurPmePmi()
     interpreteur_trames = InterpretationTramesPmePmi()
 
 pickles_etat = PicklesMyData(chemin_sauvegarde_interpretation, periode_sauvegarde)
