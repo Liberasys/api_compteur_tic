@@ -5,10 +5,10 @@ dl_decode_pmepmi : Décoder les trames des compteurs TIC, rendre accessible les 
 # en tant que root :
 apt-get install python-serial python-flask  [...]
 cd /opt/
-git clone https://github.com/Liberasys/dl_decode_pmepmi.git
-cd dl_decode_pmepmi/
-chmod 755 api_pmepmi.py
-./chmod 755 api_pmepmi.py
+git clone https://github.com/Liberasys/api_compteur_tic.git
+cd api_compteur_tic/
+chmod 755 api_compteur_tic.py
+./chmod 755 api_compteur_tic.py
 ```
 
 # Configuration :
@@ -20,16 +20,16 @@ Voir fichier de référence : api_pmepmi.conf
 
 # Lancement automatique par systemd :
 ```bash
-cat << 'EOF' > /etc/systemd/system/apipmepmi.service
+cat << 'EOF' > /etc/systemd/system/api_compteur_tic.service
 [Unit]
-Description=API pour compteur PME/PMI
+Description=API pour compteur electrique via TIC
 After=network.target
 
 [Service]
 User=root
 Group=root
-WorkingDirectory=/opt/dl_decode_pmepmi
-ExecStart=/usr/bin/python ./api_pmepmi.py
+WorkingDirectory=/opt/api_compteur_tic
+ExecStart=/usr/bin/python ./api_compteur_tic.py
 
 [Install]
 WantedBy=multi-user.target
