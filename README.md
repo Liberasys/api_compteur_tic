@@ -16,6 +16,7 @@ Voir fichier de référence : api_compteur_tic.conf
 
 # Lancement automatique par systemd :
 ```bash
+# en tant que root :
 cat << 'EOF' > /etc/systemd/system/api_compteur_tic.service
 [Unit]
 Description=API pour compteur electrique via TIC
