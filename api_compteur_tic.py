@@ -229,12 +229,12 @@ from decode_pmepmi import SortieFichier
 # Importation des paquets necessaire au traitement des trames en fonction du type de compteur
 # Instanciation des objets avec la classe utilise par le type de compteur
 if type_compteur == 'linky':
-    from decode_linky import CompteurLinky
+    from decode_linky import DecodeCompteurLinky
     from decode_linky import InterpretationTramesLinky
     decodeur_trames = CompteurLinky()
     interpreteur_trames = InterpretationTramesLinky()
 elif type_compteur == 'pmepmi':
-    from decode_pmepmi import CompteurPmePmi
+    from decode_pmepmi import DecodeCompteurPmePmi
     from decode_pmepmi import InterpretationTramesPmePmi
     decodeur_trames = CompteurPmePmi()
     interpreteur_trames = InterpretationTramesPmePmi()
