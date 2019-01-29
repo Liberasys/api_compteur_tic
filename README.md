@@ -8,7 +8,7 @@ cd /opt/
 git clone https://github.com/Liberasys/api_compteur_tic.git
 cd api_compteur_tic/
 chmod 755 api_compteur_tic.py
-./chmod 755 api_compteur_tic.py
+chmod 755 api_compteur_tic.py
 ```
 
 # Configuration :
