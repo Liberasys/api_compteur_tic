@@ -35,8 +35,8 @@ ExecStart=/usr/bin/python ./api_compteur_tic.py
 WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
-systemctl enable apipmepmi
-systemctl start apipmepmi
+systemctl enable api_compteur_tic
+systemctl start api_compteur_tic
 ```
 
 # TODO
