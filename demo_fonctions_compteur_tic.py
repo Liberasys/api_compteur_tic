@@ -36,8 +36,8 @@ from pickler import PicklesMyData
 chemin_sauvegarde_interpretation = "/opt/compteur_tic/sauvegarde_etat.pkl"
 periode_sauvegarde = 2 # nbr de secondes entre deux sauvegardes
 
-lecture_serie_active = True
-lecture_fichier_active = False
+lecture_serie_active = False
+lecture_fichier_active = True
 
 sortie_fichier_active = False
 
@@ -156,7 +156,7 @@ with PidFile(pidname="api_pmepmi"):
 
     # Callback appele quand un octet est recu
     def cb_nouvel_octet_recu(octet_recu):
-        decode_pmepmi.nouvel_octet(serial.to_bytes(octet_recu))
+        decodeur_trames.nouvel_octet(serial.to_bytes(octet_recu))
         if sortie_fichier_active == True:
             sortie_fichier.nouvel_octet(serial.to_bytes(octet_recu))
 
@@ -186,13 +186,18 @@ with PidFile(pidname="api_pmepmi"):
 
     # affectation des callbacks :
     if affichage_trames_gui_active == True:
-        decode_pmepmi.set_cb_nouvelle_trame_recue(cb_nouvelle_trame_recue)
+        decodeur_trames.set_cb_nouvelle_trame_recue(cb_nouvelle_trame_recue)
+
     if affichage_interpretations_gui_active:
         interpreteur_trames.set_cb_nouvelle_interpretation_tt_interpretation(cb_nouvelle_trame_interpretee_tt_interpretation)
-    decode_pmepmi.set_cb_nouvelle_trame_recue_tt_trame(interpreteur_trames.interpreter_trame)
-    decode_pmepmi.set_cb_debut_interruption(cb_debut_interruption)
-    decode_pmepmi.set_cb_fin_interruption(cb_fin_interruption)
-    decode_pmepmi.set_cb_mauvaise_trame_recue(cb_mauvaise_trame_recue)
+        
+    decodeur_trames.set_cb_nouvelle_trame_recue_tt_trame(interpreteur_trames.interpreter_trame)
+    decodeur_trames.set_cb_mauvaise_trame_recue(cb_mauvaise_trame_recue)
+
+    if type_compteur == 'pmepmi':
+        decodeur_trames.set_cb_debut_interruption(cb_debut_interruption)
+        decodeur_trames.set_cb_fin_interruption(cb_fin_interruption)
+
     if sauvegarde_etat == True:
         pickles_etat.set_callback(cb_sauvegarde_etat)
 
