@@ -226,7 +226,7 @@ from decode_pmepmi import LecturePortSerie
 from decode_pmepmi import LectureFichier
 from decode_pmepmi import SortieFichier
 
-# Importation des paquets nécessaire au traitement des trames en fonction du type de compteur
+# Importation des paquets necessaire au traitement des trames en fonction du type de compteur
 # Instanciation des objets avec la classe utilise par le type de compteur
 if type_compteur == 'linky':
     from decode_linky import CompteurLinky
