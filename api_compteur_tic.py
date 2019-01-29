@@ -240,7 +240,6 @@ elif type_compteur == 'pmepmi':
     interpreteur_trames = InterpretationTramesPmePmi()
 
 pickles_etat = PicklesMyData(chemin_sauvegarde_interpretation, periode_sauvegarde)
-interpreteur_trames = InterpretationTramesPmePmi()
 app = Flask(__name__)
 
 
