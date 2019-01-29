@@ -573,7 +573,7 @@ class InterpretationTramesLinky():
         cpt_trames_invalides = 0
         if self.__obtenir_mutex_donnees() == True:
             if not "INDEP_TARIF" in self._dict_interprete:
-                self._dict_interprete["INDEP_TARIF"] = (None, None)
+                self._dict_interprete["INDEP_TARIF"] = {}
             if not "CPT_TRAMES_INVALIDES" in self._dict_interprete["INDEP_TARIF"]:
                 self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", None)
             cpt_trames_invalides = (int(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"][0]))
