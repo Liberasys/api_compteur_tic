@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Droits d'auteur : HUSSON CONSULTING SAS - Liberasys
-# 20180518
-# Gautier HUSSON / Christophe PAULIAC
+# 20190129
+# Gautier HUSSON / Christophe PAULIAC / Vincent CABILLIC
 # Donne en licence selon les termes de l EUPL V.1.1 (EUPL : European Union Public Licence)
 # Voir EUPL V1.1 ici : http://ec.europa.eu/idabc/eupl.html
 
