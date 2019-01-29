@@ -12,7 +12,7 @@ chmod 755 api_compteur_tic.py
 ```
 
 # Configuration :
-Voir fichier de référence : api_pmepmi.conf
+Voir fichier de référence : api_compteur_tic.conf
 
 # Utilisation :
 - obtenir une donnée unitaire (remplacer TARIF et ETIQUETTE) : http://127.0.0.1:5000/get_donnee?tarif=TARIF&etiquette=ETIQUETTE
