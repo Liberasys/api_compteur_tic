@@ -1,4 +1,4 @@
-dl_decode_pmepmi : Décoder les trames des compteurs TIC, rendre accessible les valeurs via API WEB
+**api_compteur_tic : Décoder les trames des compteurs électriques via leur sortie TIC, rendre accessible les valeurs via API WEB sous forme JSON.**
 
 # Installation :
 ```bash
