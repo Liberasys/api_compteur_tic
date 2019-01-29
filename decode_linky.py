@@ -554,6 +554,12 @@ class InterpretationTramesLinky():
 
             # On a fini de modifier les donnees, on relache le mutex
 
+    def set_cb_nouvelle_interpretation(self, fonction):
+        """
+        Affectation du callback appele quand une nouvelle intrepretation est validee,
+        applique sur l'interruption - passee en parametre du callback
+        """
+        self._cb_nouvelle_interpretation = fonction
 
     def set_cb_nouvelle_intrepretation_tt_interpretation(self, fonction):
         """ Affectation du callback appele quand une nouvelle interpretation est validee,
