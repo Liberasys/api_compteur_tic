@@ -3,7 +3,7 @@
 # Installation :
 ```bash
 # en tant que root :
-apt-get install python-serial python-flask  [...]
+apt-get install python-serial python-flask
 cd /opt/
 git clone https://github.com/Liberasys/api_compteur_tic.git
 cd api_compteur_tic/
