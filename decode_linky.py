@@ -542,7 +542,7 @@ class InterpretationTramesLinky():
 
                 # Creation etiquette nbr trames invalides si besoin
                 if not "CPT_TRAMES_INVALIDES" in nouveau_tableau_interprete:
-                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", None)
+                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = {}
 
                 # Au final, on recopie le nouveau tableau interprete, et on met a jour la periode tarifaire actuelle
                 del self._dict_interprete
@@ -575,7 +575,7 @@ class InterpretationTramesLinky():
             if not "INDEP_TARIF" in self._dict_interprete:
                 self._dict_interprete["INDEP_TARIF"] = {}
             if not "CPT_TRAMES_INVALIDES" in self._dict_interprete["INDEP_TARIF"]:
-                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", None)
+                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = {}
             cpt_trames_invalides = (int(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"][0]))
             cpt_trames_invalides = cpt_trames_invalides + 1
             self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (str(cpt_trames_invalides), None)
