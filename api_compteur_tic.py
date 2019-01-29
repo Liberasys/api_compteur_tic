@@ -333,10 +333,12 @@ with PidFile(pidname="api_compteur_tic"):
 
     # affectation des callbacks :
     decodeur_trames.set_cb_nouvelle_trame_recue_tt_trame(interpreteur_trames.interpreter_trame)
-    decodeur_trames.set_cb_debut_interruption(cb_debut_interruption)
-    decodeur_trames.set_cb_fin_interruption(cb_fin_interruption)
     decodeur_trames.set_cb_mauvaise_trame_recue(cb_mauvaise_trame_recue)
     pickles_etat.set_callback(cb_sauvegarde_etat)
+
+    if type_compteur == 'pmepmi':
+            decodeur_trames.set_cb_debut_interruption(cb_debut_interruption)
+            decodeur_trames.set_cb_fin_interruption(cb_fin_interruption)
 
     # lecture de l'etat sauvegarde et demarrage de la sauvegarde periodique :
     etat_sauve = pickles_etat.get_data()
