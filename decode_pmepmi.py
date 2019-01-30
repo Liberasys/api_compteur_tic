@@ -651,11 +651,11 @@ class InterpretationTramesPmePmi():
 
                 # Creation etiquette nbr interruptions si besoin
                 if not "CPT_INTERRUPTIONS" in nouveau_tableau_interprete["INDEP_TARIF"]:
-                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = ("0", None)
+                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = ("0", "Nombre d'interruptions")
 
                 # Creation etiquette nbr trames invalides si besoin
                 if not "CPT_TRAMES_INVALIDES" in nouveau_tableau_interprete["INDEP_TARIF"] :
-                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", None)
+                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", "Nombre de trames")
 
                 # Consommation totale : somme des consos
                 for nouveau_tableau_interprete_entree_en_cours in nouveau_tableau_interprete:
@@ -713,10 +713,10 @@ class InterpretationTramesPmePmi():
             if not "INDEP_TARIF" in self._dict_interprete:
                 self._dict_interprete["INDEP_TARIF"] = {}
             if not "CPT_INTERRUPTIONS" in self._dict_interprete["INDEP_TARIF"]:
-                self._dict_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = ("0", None)
+                self._dict_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = ("0", "Nombre d'interruptions")
             CPT_INTERRUPTIONSerruptions = int(self._dict_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"][0])
             CPT_INTERRUPTIONSerruptions = CPT_INTERRUPTIONSerruptions +1
-            self._dict_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = (str(CPT_INTERRUPTIONSerruptions), None)
+            self._dict_interprete["INDEP_TARIF"]["CPT_INTERRUPTIONS"] = (str(CPT_INTERRUPTIONSerruptions), "Nombre d'interruptions")
             self.__relacher_mutex_donnees()
 
     def incrementer_compteur_trames_invalides(self):
@@ -727,10 +727,10 @@ class InterpretationTramesPmePmi():
             if not "INDEP_TARIF" in self._dict_interprete:
                 self._dict_interprete["INDEP_TARIF"] = {}
             if not "CPT_TRAMES_INVALIDES" in self._dict_interprete["INDEP_TARIF"]:
-                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", None)
+                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", "Nombre de trames")
             cpt_trames_invalides = int(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"][0])
             cpt_trames_invalides = cpt_trames_invalides +1
-            self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (str(cpt_trames_invalides), None)
+            self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (str(cpt_trames_invalides), "Nombre de trames")
             self.__relacher_mutex_donnees()
 
     def __obtenir_mutex_donnees(self):

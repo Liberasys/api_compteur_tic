@@ -35,7 +35,7 @@ app_debug = False
 dicoval={}
 
 ## path vers fichier de configuration
-conf_path = '/opt/dl_decode_compteur_tic/api_compteur_tic.conf'
+conf_path = '/opt/api_compteur_tic/api_compteur_tic.conf'
 
 ## dictionnaire des variables neccessaires a l execution
 required = {
@@ -102,6 +102,11 @@ def conversion_fichier(dicoval):
                         'false': False,
                         'False': False
                         }
+
+    compteur_mapping = {
+                        'linky': "",
+                        'pmepmi': ""
+                       }
 
     for element in required.keys(): ## parcours des variables obligatoires
         if element in dicoval.keys(): ## parcours des variables du ficher de conf
@@ -183,7 +188,7 @@ try:
 except IOError:
     ## Fichier non trouve, initialisation des variables par defaut :
     dicoval = required
-    print('Fichier non trouve, initialisation des variables par defaut.')
+    print('Fichier de configuration non trouve, initialisation des variables par defaut.')
 
 if app_debug:
     print('variables de sortie :')
@@ -379,6 +384,7 @@ with PidFile(pidname="api_compteur_tic"):
         retour = ()
         if 'tarif' in request.args and 'etiquette' in request.args :
             retour = interpreteur_trames.get_donnee(request.args['tarif'],request.args['etiquette'])
+            print("get_donnee (",request.args['tarif'], ", ", request.args['etiquette'], ") = ", retour)
             if retour == (None, None):
                 return ""
             else:
@@ -395,7 +401,7 @@ with PidFile(pidname="api_compteur_tic"):
     log.setLevel(logging.ERROR)
 
     # lancement API
-    app.run(debug=False)
+    app.run(host="0.0.0.0", debug=False)
 
 
 

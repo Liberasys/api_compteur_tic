@@ -542,7 +542,7 @@ class InterpretationTramesLinky():
 
                 # Creation etiquette nbr trames invalides si besoin
                 if not "CPT_TRAMES_INVALIDES" in nouveau_tableau_interprete:
-                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = {}
+                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (None, None)
 
                 # Au final, on recopie le nouveau tableau interprete, et on met a jour la periode tarifaire actuelle
                 del self._dict_interprete
@@ -572,13 +572,18 @@ class InterpretationTramesLinky():
         #print("Incrementer le compteur de trames invalides")
         cpt_trames_invalides = 0
         if self.__obtenir_mutex_donnees() == True:
+            #print("self._dict_interprete[INDEP_TARIF] :", self._dict_interprete["INDEP_TARIF"])
+            #print(str(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"]))
             if not "INDEP_TARIF" in self._dict_interprete:
                 self._dict_interprete["INDEP_TARIF"] = {}
             if not "CPT_TRAMES_INVALIDES" in self._dict_interprete["INDEP_TARIF"]:
-                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = {}
-            cpt_trames_invalides = (int(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"][0]))
+                print("Dictionnaire INDEP TARIF CPT TRAMES INVALIDES : ") 
+                self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = ("0", "Nombre de trames")
+            #print("Nb Trames Invalides : ", str(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"]))
+            cpt_trames_invalides = int(self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"][0])
             cpt_trames_invalides = cpt_trames_invalides + 1
-            self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (str(cpt_trames_invalides), None)
+            #print("Nb Trames Invalides : ", str(cpt_trames_invalides))
+            self._dict_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (str(cpt_trames_invalides), "Nombre de trames")
             self.__relacher_mutex_donnees()
 
 
