@@ -537,12 +537,12 @@ class InterpretationTramesLinky():
 
                     # Si l'etiquette est deja dans le tableau de configuration/selection (mesure de precaution)
                     if etiquette in self._config_champs:
-                        nouveau_tableau_interprete["INDEP_TARIF"][etiquette] = (donnee, unite)
+                        nouveau_tableau_interprete["INDEP_TARIF"][etiquette] = (donnee, unite, horodate)
                         nouveau_tableau_interprete_entree_en_cours = "INDEP_TARIF"
 
                 # Creation etiquette nbr trames invalides si besoin
                 if not "CPT_TRAMES_INVALIDES" in nouveau_tableau_interprete:
-                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (None, None)
+                    nouveau_tableau_interprete["INDEP_TARIF"]["CPT_TRAMES_INVALIDES"] = (None, "Nombre de trames")
 
                 # Au final, on recopie le nouveau tableau interprete, et on met a jour la periode tarifaire actuelle
                 del self._dict_interprete

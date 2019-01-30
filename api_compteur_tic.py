@@ -384,7 +384,6 @@ with PidFile(pidname="api_compteur_tic"):
         retour = ()
         if 'tarif' in request.args and 'etiquette' in request.args :
             retour = interpreteur_trames.get_donnee(request.args['tarif'],request.args['etiquette'])
-            print("get_donnee (",request.args['tarif'], ", ", request.args['etiquette'], ") = ", retour)
             if retour == (None, None):
                 return ""
             else:
@@ -401,7 +400,7 @@ with PidFile(pidname="api_compteur_tic"):
     log.setLevel(logging.ERROR)
 
     # lancement API
-    app.run(host="0.0.0.0", debug=False)
+    app.run(debug=False)
 
 
 
