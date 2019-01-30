@@ -1,5 +1,11 @@
-# LOGNACT
+# Documentation Linky
+[Résultat de recherche documentation télé-information client !](https://www.enedis.fr/recherche?page=0%2C0%2C0%2C0&keywords=t%C3%A9l%C3%A9-information&types%5Bnews%5D=0&types%5Bpage%5D=0&types%5Bdocument%5D=0&types%5Bvideo%5D=0&index=documents)
 
+Numero doc compteur :
+   - Pmepmi : Enedis-NOI-CPT_02E
+   - Linky  : Enedis-NOI-CPT_54E
+
+# API COMPTEUR TIC
 Fichier :
     - decode_pmepmi.py
     - pickler.py
