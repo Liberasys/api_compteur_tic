@@ -18,9 +18,9 @@ Exemple : Le Thread contenant l'objet de **lecture série** à un callback qui e
 Ce programme permet le décodage des trames de Télé Information Client (TIC) de compteurs électrique ENEDIS.
 
 Il y a trois threads :
-    - Le main ou sont instanciés les objets nécessaire au traitement, à la configuration de l'API et à la sortie fichier de la trame brut. Instancie flask et passe la main à flask.
-    - Le pickler, à intervalle régulier retourne une structure de données dans un fichier de sauvegarde. Il permet aussi de recharger les données au redémarrage du programme.
-    - La lecture série récupère les trames en sortie du compteur et appel à traiter chaque nouvel octet envoyé par le compteur.
+- Le main ou sont instanciés les objets nécessaire au traitement, à la configuration de l'API et à la sortie fichier de la trame brut. Instancie flask et passe la main à flask.
+- Le pickler, à intervalle régulier retourne une structure de données dans un fichier de sauvegarde. Il permet aussi de recharger les données au redémarrage du programme.
+- La lecture série récupère les trames en sortie du compteur et appel à traiter chaque nouvel octet envoyé par le compteur.
 
 ## Algorithme :
 
