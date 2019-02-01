@@ -42,9 +42,10 @@ systemctl start api_compteur_tic
 
 # TODO
   - Automatiser la gestion de configuration avec un paquet python.
+  - Avant passage en héritage de classe, (solution temporaire). Passer les Classes communes à des paquets et qui font le même traitement dans un paquet à part.
   - Passer en héritage de classe pour les classes de gestion de décodage et d'interpretation des trames.
-  - Gérer le dictionnaire de donnée du pickler lors du reimport, car changement de type de compteur (test de type/version, ne pas prendre en compte les données du fichier pickler le cas échéant, écraser le fichier pickler).
+  - Gérer le dictionnaire de données du pickler lors du reimport, car changement de type de compteur (test de type/version, ne pas prendre en compte les données du fichier pickler le cas échéant, écraser le fichier pickler).
   - Décodage des trames
-    - A vérifier, certaines trames du linky ne sont pas correctes. Il manque parfois le checksum en fin de groupe de caractere, champ rencontré : 'SMAXSN-1'.
+    - A vérifier, certaines trames du linky ne sont pas correctes. Il manque parfois le checksum en fin de groupe de caractere, champ rencontré : 'SMAXSN-1'. Cas observé une fois.
   - Interpretation des trames
     - Gérer le registre de statuts qui est un champ de bit (Champ STGE), et les autres champs de bits, dans l'interpreteur de trame pour compteur Linky, voir doc.
