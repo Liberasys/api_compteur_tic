@@ -23,9 +23,9 @@ Diagramme des automates à état des compteurs TIC gérés par le programme.
 Ce programme permet le décodage des trames de Télé Information Client (TIC) de compteurs électrique ENEDIS.
 
 Il y a trois threads :
-    - Le main ou sont instanciés les objets nécessaire au traitement, à la configuration de l'API et à la sortie fichier de la trame brut. Instancie flask et passe la main à flask.
-    - Le pickler, à intervalle régulier retourne une structure de données dans un fichier de sauvegarde. Il permet aussi de recharger les données au redémarrage du programme.
-    - La lecture série récupère les trames en sortie du compteur et appel à traiter chaque nouvel octet envoyé par le compteur.
+- Le main ou sont instanciés les objets nécessaire au traitement, à la configuration de l'API et à la sortie fichier de la trame brut. Instancie flask et passe la main à flask.
+- Le pickler, à intervalle régulier retourne une structure de données dans un fichier de sauvegarde. Il permet aussi de recharger les données au redémarrage du programme.
+- La lecture série récupère les trames en sortie du compteur et appel à traiter chaque nouvel octet envoyé par le compteur.
 
 Le programme reçoit un flot continue de données fournies par la TIC. Ces données peuvent être divisées en sous ensemble. Les caractères (chaque octet), qui sont regroupés en groupe de caractères, a leur tour regroupable en une trame. Ainsi le compteur fournit des trames en continue. Les groupes de caractères contiennent un nom de champ, une valeur et parfois un horodatage.
 L'algorithme traite/décode les octets, pour les assembler en groupe de caractère puis en trame. Puis interprète la trame, on effectue des opérations plus intelligentes, calcul de delta de valeur, renseignement de l'unité, structuration des données.
@@ -44,18 +44,18 @@ Enfin on peut accéder aux données en format JSON via l'API créée par Flask. 
 
 # API COMPTEUR TIC
 Fichier :
-    - decode_pmepmi.py
-    - decode_linky.py
-    - pickler.py
-    - affichage.py
-    - api_compteur_tic.py
-    - api_compteur_tic.conf
-    - pid.py
+- decode_pmepmi.py
+- decode_linky.py
+- pickler.py
+- affichage.py
+- api_compteur_tic.py
+- api_compteur_tic.conf
+- pid.py
 
 Thread :
-    - main (api_compteur_tic.py)
-    - PicklesMyData (pickler.py)
-    - LecturePortSerie (decode_pmepmi.py)
+- main (api_compteur_tic.py)
+- PicklesMyData (pickler.py)
+- LecturePortSerie (decode_pmepmi.py)
 
 ## api_compteur_tic.py
     Description :
