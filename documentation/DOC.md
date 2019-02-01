@@ -35,18 +35,18 @@ Enfin on peut accéder aux données en format JSON via l'API créée par Flask. 
 
 # API COMPTEUR TIC
 Fichier :
-    - decode_pmepmi.py
-    - decode_linky.py
-    - pickler.py
-    - affichage.py
-    - api_compteur_tic.py
-    - api_compteur_tic.conf
-    - pid.py
+- decode_pmepmi.py
+- decode_linky.py
+- pickler.py
+- affichage.py
+- api_compteur_tic.py
+- api_compteur_tic.conf
+- pid.py
 
 Thread :
-    - main (api_compteur_tic.py)
-    - PicklesMyData (pickler.py)
-    - LecturePortSerie (decode_pmepmi.py)
+- main (api_compteur_tic.py)
+- PicklesMyData (pickler.py)
+- LecturePortSerie (decode_pmepmi.py)
 
 ## api_compteur_tic.py
     Description :
