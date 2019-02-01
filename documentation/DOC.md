@@ -13,6 +13,11 @@ Exemple : Le Thread contenant l'objet de **lecture série** à un callback qui e
 
 ![Image Diagramme des threads, objets et appels](./Diagramme_API/Diagramme_API_Compteur_TIC-Thread_Class_Function_1920x.png)
 
+## Diagramme Automate à état
+Diagramme des automates à état des compteurs TIC gérés par le programme.
+![Automate compteur PMEPMI](./Diagramme_automate_a_etat/Automate_Compteur_LINKY.png)
+![Automate compteur LINKY](./Diagramme_automate_a_etat/Automate_Compteur_PMEPMI.png)
+
 # Fonctionnement du logiciel
 ## Introduction :
 Ce programme permet le décodage des trames de Télé Information Client (TIC) de compteurs électrique ENEDIS.
@@ -22,16 +27,20 @@ Il y a trois threads :
     - Le pickler, à intervalle régulier retourne une structure de données dans un fichier de sauvegarde. Il permet aussi de recharger les données au redémarrage du programme.
     - La lecture série récupère les trames en sortie du compteur et appel à traiter chaque nouvel octet envoyé par le compteur.
 
+Le programme reçoit un flot continue de données fournies par la TIC. Ces données peuvent être divisées en sous ensemble. Les caractères (chaque octet), qui sont regroupés en groupe de caractères, a leur tour regroupable en une trame. Ainsi le compteur fournit des trames en continue. Les groupes de caractères contiennent un nom de champ, une valeur et parfois un horodatage.
+L'algorithme traite/décode les octets, pour les assembler en groupe de caractère puis en trame. Puis interprète la trame, on effectue des opérations plus intelligentes, calcul de delta de valeur, renseignement de l'unité, structuration des données.
+
 ## Algorithme :
 
-Le décodage c'est le passage des octets reçus dans la machine à état qui ensuite créé des groupes de caractères (ensemble des octets entre un LF et un CR) et accumule ces groupes dans une variable (tant qu'il n'y a pas de caractère de fin de trame). On gère aussi les erreurs, que peut fournir la TIC. Chaque nouvel trame est ensuite interprétée.
-Tandis que l'interprétation, prend chaque trame reçue qu'elle soit valide ou non pour les analyser et retourner une structure de données. L'analyse des trames fournit le nom du champ qu'on utilise pour valider l'existance du champ, la valeur du champ, parfois l'horodatage. D'autres données sont spécifiés grâce au documentation des compteurs (unité de valeur).
+Le décodage c'est le passage des octets reçus dans la machine à état qui ensuite créé des groupes de caractères (ensemble des octets entre un LF et un CR) et accumule ces groupes dans une variable équivalent à la trame (tant qu'il n'y a pas de caractère de fin de trame). On gère aussi les erreurs, que peut fournir la TIC. Chaque nouvel trame est ensuite interprétée.
 
-Les paquets  et classes sont chargés en fonctions de la configuration (Pmepmi ou Linky). Après instanciation des objets et des threads, c'est la lecture du lien série qui initie le traitement. Chaque nouvel octet reçu de la lecture série est envoyer par fonction de rappel à nouvel_octet(). D'abord les octets sont décodés (DecodeTrame), grâce à une machine à état. Elle gère les trames émises par le compteur. Chaque trame est composé de plusieurs groupes de caractères. L'octet passe dans la machine à état et, en fonction de sa valeur et de l'état en cours on exécute des fonctions. S'il y a un caractère spécial, il y a changement d'état (voir automate_a_etats.odg).
+L'interprétation, prend chaque trame reçue qu'elle soit valide ou non pour les analyser et retourner une structure de données. L'analyse des trames fournit le nom du champ qu'on utilise pour valider l'existance du champ, la valeur du champ, parfois l'horodatage. D'autres données sont spécifiés grâce au documentation des compteurs (unité de valeur).
 
-Une fois la trame complète et validé elle est envoyé a l'interpréteur qui créé une structure de données exploitable. A partir des documentations des compteurs, on a créé un dictionnaire répertoriant les caractéristiques des champs possibles dans une trame. Les informations auxquelles on a accès sont le type de valeur (numérique ou non), l'unité ou des valeurs qui permettent le traitement de manière déterministe... Le dictionnaire est exploité pour déterminer si les champs contenus dans les trames existent, dans le cas contraire on génère une erreur.
+Les paquets  et classes sont chargés en fonctions de la configuration (Pmepmi ou Linky). Après instanciation des objets et des threads, c'est la lecture du lien série qui initie le traitement. Chaque nouvel octet reçu de la lecture série est envoyer par fonction de rappel à nouvel_octet(). D'abord les octets sont décodés (DecodeTrame), grâce à une machine à état. Elle gère les trames émises par le compteur. L'octet passe dans la machine à état et, en fonction de sa valeur et de l'état en cours on exécute des fonctions. S'il y a un caractère spécial, il y a changement d'état (voir automate_a_etats.odg).
 
-Enfin on peut accéder aux données en format JSON via l'API créée par Flask. Au fur et à mesure que les trames sont interprétées, on les fournit a Flask. Les interprétations sont aussi stockées dans un fichier local.
+Une fois la trame complète et validé elle est envoyé a l'interpréteur qui créé une structure de données exploitable. A partir des documentations des compteurs, on a créé un dictionnaire répertoriant les caractéristiques des champs possibles dans une trame. Les données sont traités de manière déterministe grâce à un tableau configuré via les documentations. Le dictionnaire est exploité pour déterminer si les champs contenus dans les trames existent, dans le cas contraire on génère une erreur.
+
+Enfin on peut accéder aux données en format JSON via l'API créée par Flask. Au fur et à mesure que les trames sont interprétées, on les fournit a Flask. A chaque fois que l'on fais appel à Flask, il récupère la dernière trame interprété. Les interprétations sont aussi stockées dans un fichier local.
 
 # API COMPTEUR TIC
 Fichier :
